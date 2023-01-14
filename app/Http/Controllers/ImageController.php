@@ -25,9 +25,9 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Image $image)
     {
-        return Inertia::render("Image/Create");
+        return Inertia::render("Image/Create",['image' => $image->get()]);
     }
 
     /**
@@ -89,5 +89,10 @@ class ImageController extends Controller
     public function destroy(Image $image)
     {
         //
+    }
+
+    public function valentine(Image $image)
+    {
+        return view('valentine',compact('image'));
     }
 }

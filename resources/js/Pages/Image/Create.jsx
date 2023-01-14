@@ -1,7 +1,7 @@
 import { useForm } from "@inertiajs/inertia-react";
 import React from "react";
 
-const Create = () => {
+const Create = ({ image }) => {
     const { data, setData, post, errors } = useForm({ image: "" });
 
     const handleSendImage = (e) => {
@@ -11,6 +11,9 @@ const Create = () => {
 
     return (
         <div>
+            {image.map((i) => (
+                <a href={`/valentine/${i.id}`}>{i.id}</a>
+            ))}
             <form onSubmit={handleSendImage}>
                 <input
                     type="file"
