@@ -17,16 +17,9 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get("/", [ImageController::class, "create"]);
+Route::resource("images", ImageController::class)->except("create");
 
-Route::resource("images", ImageController::class);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
