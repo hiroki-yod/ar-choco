@@ -45,7 +45,7 @@ class ImageController extends Controller
             "image_url" => $image_url
         ]);
 
-        QrCode::generate("https://voluble-cat-e0c652.netlify.app/test.html", '../public/storage/QRcodes/' + $image->id + '.svg');
+        QrCode::generate("https://voluble-cat-e0c652.netlify.app/test.html", '../public/' . strval($image->id) . '.svg');
 
         return redirect(route("images.show", $image->id));
     }

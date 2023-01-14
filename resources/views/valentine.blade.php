@@ -22,12 +22,13 @@
       <a-marker preset="hiro">
         <a-entity>
           <!-- idを指定して画像を表示、x軸回りで-90度回転 -->
-          <a-image
+          <a-box src="#levtech"></a-box>
+          {{-- <a-image
             src="#levtech"
             width="2"
             height="2"
             rotation="-90 0 0"
-          ></a-image>
+          ></a-image> --}}
           <!-- a-imageを内包するa-entityをy軸周りで360度回転するアニメーション -->
           <!-- dur(間隔):4000(ms), repeat(繰り返し):止めない限り無限, easing(イージング):線形(イージングしない)-->
           <a-animation
