@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Inertia\Inertia;
 use Cloudinary;
 use App\Http\Requests\ImageRequest;
@@ -43,6 +44,9 @@ class ImageController extends Controller
             "id" => str()->uuid(),
             "image_url" => $image_url
         ]);
+
+        QrCode::generate("https://voluble-cat-e0c652.netlify.app/test.html", '../public/storage/QRcodes/' + $image->id + '.svg');
+
         return redirect(route("images.show", $image->id));
     }
 
