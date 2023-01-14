@@ -6,6 +6,7 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Cloudinary;
+use App\Http\Requests\ImageRequest;
 
 class ImageController extends Controller
 {
@@ -35,7 +36,7 @@ class ImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ImageRequest $request)
     {
         $image_url = Cloudinary::upload($request->file('image')[0]->getRealPath())->getSecurePath();
         $image = Image::create([
