@@ -37,10 +37,10 @@ const Create = ({ image }) => {
                     <Explain src="https://res.cloudinary.com/shoimages/image/upload/v1673764879/ar-choco/sample-letter_wveolg.jpg">
                         ①手紙をアップロード
                     </Explain>
-                    <Explain src="https://res.cloudinary.com/shoimages/image/upload/v1673764894/ar-choco/sample_w5cemw.jpg">
-                        ②QRコードをダウンロード
+                    <Explain src="https://res.cloudinary.com/shoimages/image/upload/v1673771440/ar-choco/PXL_20230115_082740684_qbtouj.jpg">
+                        ②QRコードをチョコに貼り付け
                     </Explain>
-                    <Explain src="https://res.cloudinary.com/shoimages/image/upload/v1673764894/ar-choco/sample_w5cemw.jpg">
+                    <Explain src="https://res.cloudinary.com/shoimages/image/upload/v1673771480/ar-choco/PXL_20230115_082822164_ldsaxt.jpg">
                         ③スマホで手紙を表示
                     </Explain>
                 </div>
