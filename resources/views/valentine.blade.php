@@ -20,25 +20,111 @@
       </a-assets>
       <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
       <a-marker type="pattern" url={{ asset('/pattern-ar.patt') }}>
-        <a-entity>
-          <!-- idを指定して画像を表示、x軸回りで-90度回転 -->
-          <a-box src="#levtech"></a-box>
-          {{-- <a-image
+        
+      <a-entity>
+          <!-- 手紙 -->
+          <a-image
             src="#levtech"
-            width="2"
-            height="2"
             rotation="-90 0 0"
-          ></a-image> --}}
-          <!-- a-imageを内包するa-entityをy軸周りで360度回転するアニメーション -->
-          <!-- dur(間隔):4000(ms), repeat(繰り返し):止めない限り無限, easing(イージング):線形(イージングしない)-->
+          ></a-image>
           <a-animation
             attribute="rotation"
-            to="0 360 0"
+            to="30 0 0"
             dur="4000"
-            repeat="indefinite"
-            easing="linear"
+            delay="3000"
+          ></a-animation>
+          <a-animation
+            attribute="position"
+            to="0 2 0"
+            dur="4000"
+            delay="3000"
+          ></a-animation>
+          <a-animation
+            attribute="scale"
+            from="1 1 1"
+            to="1.5 1.5 1.5"
+            dur="4000"
+            delay="3000"
           ></a-animation>
         </a-entity>
+
+        <!-- 箱 -->
+        <a-entity>
+          <!-- <a-box
+            position="0 0 0"
+            color="#ffffff"
+            width="1.5"
+            height="1.3"
+            depth="1.5"
+          ></a-box> -->
+          <a-box
+            position="0 -0.74 0"
+            color="#ffffff"
+            width="1.5"
+            height="0.2"
+            depth="1.5"
+          ></a-box>
+          <a-box
+            position="0 0 0.7"
+            color="#ffffff"
+            width="1.5"
+            height="1.3"
+            depth="0.1"
+          ></a-box>
+          <a-box
+            position="0 0 -0.7"
+            color="#ffffff"
+            width="1.5"
+            height="1.3"
+            depth="0.1"
+          ></a-box>
+          <a-box
+            position="0.7 0 0"
+            color="#ffffff"
+            width="0.1"
+            height="1.3"
+            depth="1.5"
+          ></a-box>
+          <a-box
+            position="-0.7 0 0"
+            color="#ffffff"
+            width="0.1"
+            height="1.3"
+            depth="1.5"
+          ></a-box>
+        </a-entity>
+
+        <!-- ふた -->
+        <a-entity>
+          <a-box
+            position="0 0.75 0"
+            color="#ffffff"
+            width="1.5"
+            height="0.2"
+            depth="1.5"
+          ></a-box>
+          <a-animation
+            attribute="rotation"
+            from="0 0 0"
+            to="0 20 -180"
+            dur="4000"
+            delay="3000"
+          ></a-animation>
+          <a-animation
+            attribute="position"
+            from="0 0 0"
+            to="1.2 0.3 0"
+            dur="700"
+            delay="3000"
+          ></a-animation>
+          <a-animation
+            attribute="position"
+            to="2.3 0.2 0"
+            dur="4000"
+            delay="3000"
+          ></a-animation>
+        </a-entity>
+
       </a-marker>
 
       <!-- AR用のカメラを置く -->
