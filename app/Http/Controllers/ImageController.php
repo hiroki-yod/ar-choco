@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Inertia\Inertia;
 use Cloudinary;
 use App\Http\Requests\ImageRequest;
@@ -25,9 +26,9 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Image $image)
     {
-        return Inertia::render("Image/Create");
+        return Inertia::render("Image/Create",['image' => $image->get()]);
     }
 
     /**
@@ -43,6 +44,8 @@ class ImageController extends Controller
             "id" => str()->uuid(),
             "image_url" => $image_url
         ]);
+
+        QrCode::generate("http://hiroki-yod.com/valentine/".strval($image->id), '../public/QR/' . strval($image->id) . '.svg');
         return redirect(route("images.show", $image->id));
     }
 
@@ -89,5 +92,10 @@ class ImageController extends Controller
     public function destroy(Image $image)
     {
         //
+    }
+
+    public function valentine(Image $image)
+    {
+        return view('valentine',compact('image'));
     }
 }
