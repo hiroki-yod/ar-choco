@@ -48,7 +48,7 @@ const Create = ({ image }) => {
                     {/* <InputFile
                         onChange={(e) => setData("image", e.target.files)}
                     ></InputFile> */}
-                    <div className="sm:flex sm:justify-center mb-4">
+                    <div className="sm:flex sm:justify-center mb-4 md:items-center">
                         <div className="mt-6 mx-6">
                             {!preImage ? (
                                 <label className="mx-auto flex items-center justify-center h-20 w-40 bg-white border rounded border-black">
@@ -62,7 +62,9 @@ const Create = ({ image }) => {
                                             reader.onload = (e) => {
                                                 setPreImage(e.target.result);
                                             };
-                                            reader.readAsDataURL(e.target.files[0]);
+                                            reader.readAsDataURL(
+                                                e.target.files[0]
+                                            );
                                         }}
                                     />
                                     画像を選択する
@@ -90,7 +92,9 @@ const Create = ({ image }) => {
                                 </div>
                             )}
                             {errors.images && (
-                                <div className="text-red-600">{errors.images}</div>
+                                <div className="text-red-600">
+                                    {errors.images}
+                                </div>
                             )}
                         </div>
                         <p className="text-red-600">{errors.image}</p>
