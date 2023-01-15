@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>A-Frame で超簡単 AR</title>
+    <title>AR letters</title>
   </head>
   <body style="margin: 0px; overflow: hidden">
     <!-- A-Frame ライブラリの読み込み -->
@@ -19,7 +19,7 @@
         <img id="levtech" src={{ $image->image_url }} />
       </a-assets>
       <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
-      <a-marker preset="hiro">
+      <a-marker type="pattern" url={{ asset('/pattern-ar.patt') }}>
         <a-entity>
           <!-- idを指定して画像を表示、x軸回りで-90度回転 -->
           <a-box src="#levtech"></a-box>
