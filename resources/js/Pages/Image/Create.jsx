@@ -23,7 +23,7 @@ const Create = ({ image }) => {
             </div>
             <div className="text-center">
                 <PageTitle></PageTitle>
-                <div class="flex justify-between mt-16 mx-20">
+                <div class="flex-row  mt-16 mx-10 sm:flex sm:justify-between sm:mx-20">
                     <Explain src="storage/images/sample.jpg">
                         ①手紙をアップロード
                     </Explain>
