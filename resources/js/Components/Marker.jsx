@@ -1,11 +1,10 @@
-import Button from '@/Components/Button';
-
-export default function Letter({ src, children }) {
+export default function Marker({ href, src, children }) {
     return (
-        <div class="text-center w-1/4">
-            <img src={src} alt="Explanation" />
-            <p class="text-xl font-bold text-stone-600 mt-4">{children}</p>
-            <Button>Download</Button>
+        <div class="text-center w-1/3 sm:mx-16 mx-auto my-16">
+            <a href={href} download>
+                <img src={src} width="300" height="150"  className="mx-auto"/>
+            </a>
+            <p className='mt-4 text-xl font-bold text-stone-600'>{ children }</p>
         </div>
     );
 }
