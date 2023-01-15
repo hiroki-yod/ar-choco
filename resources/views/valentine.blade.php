@@ -17,6 +17,8 @@
       <a-assets>
         <!-- 画像をプリロード -->
         <img id="levtech" src={{ $image->image_url }} />
+        <a-asset-item id="ribbon" src={{ asset('/ribbon.obj') }}></a-asset-item>
+        <a-asset-item id="mtl" src={{ asset('/ribbon.mtl') }}></a-asset-item>
       </a-assets>
       <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
       <a-marker type="pattern" url={{ asset('/pattern-ar.patt') }}>
@@ -50,13 +52,7 @@
 
         <!-- 箱 -->
         <a-entity>
-          <!-- <a-box
-            position="0 0 0"
-            color="#ffffff"
-            width="1.5"
-            height="1.3"
-            depth="1.5"
-          ></a-box> -->
+        <a-entity>
           <a-box
             position="0 -0.74 0"
             color="#ffffff"
@@ -92,16 +88,87 @@
             height="1.3"
             depth="1.5"
           ></a-box>
+          <a-box
+            position="0 -0.1 0.78"
+            color="#ff0000"
+            width="0.3"
+            height="1.5"
+            depth="0.02"
+          ></a-box>
+          <a-box
+            position="0 -0.1 -0.78"
+            color="#ff0000"
+            width="0.3"
+            height="1.5"
+            depth="0.02"
+          ></a-box>
+          <a-box
+            position="0.78 -0.1 0"
+            color="#ff0000"
+            width="0.02"
+            height="1.5"
+            depth="0.3"
+          ></a-box>
+          <a-box
+            position="-0.78 -0.1 0"
+            color="#ff0000"
+            width="0.02"
+            height="1.5"
+            depth="0.3"
+          ></a-box>
         </a-entity>
 
         <!-- ふた -->
         <a-entity>
+          <a-obj-model position="0 0.65 -1.3" scale="0.8 1 0.8" rotation="0 180 0" src="#ribbon" mtl="#mtl" color="#ff0000"></a-obj-model>
           <a-box
             position="0 0.75 0"
             color="#ffffff"
             width="1.5"
             height="0.2"
             depth="1.5"
+          ></a-box>
+          <a-box
+            position="0 0.9 0"
+            color="#ff0000"
+            width="1.59"
+            height="0.05"
+            depth="0.3"
+          ></a-box>
+          <a-box
+            position="0 0.9 0"
+            color="#ff0000"
+            width="0.3"
+            height="0.05"
+            depth="1.59"
+          ></a-box>
+          <a-box
+            position="0 0.75 0.78"
+            color="#ff0000"
+            width="0.3"
+            height="0.3"
+            depth="0.02"
+          ></a-box>
+          <a-box
+            position="0 0.75 -0.78"
+            color="#ff0000"
+            width="0.3"
+            height="0.3"
+            depth="0.02"
+          ></a-box>
+          <a-box
+            position="0.78 0.75 0"
+            color="#ff0000"
+            width="0.02"
+            height="0.3"
+            depth="0.3"
+          ></a-box>
+          <a-box
+            position="-0.78 0.75 0"
+            color="#ff0000"
+            width="0.02"
+            height="0.3"
+            depth="0.3"
           ></a-box>
           <a-animation
             attribute="rotation"
