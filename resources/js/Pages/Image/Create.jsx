@@ -31,7 +31,7 @@ const Create = () => {
                 <InputFile onChange={(e) => setData("image", e.target.files)}>
                 </InputFile>
                 <p className="text-red-600">{errors.image}</p>
-                <Button></Button>
+                <Button>Upload</Button>
             </form>
         </div>
     );
