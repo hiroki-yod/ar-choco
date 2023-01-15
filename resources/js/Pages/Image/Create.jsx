@@ -24,7 +24,7 @@ const Create = ({ image }) => {
             <div className="text-center">
                 <PageTitle></PageTitle>
                 <div class="flex-row  mt-16 mx-10 sm:flex sm:justify-between sm:mx-20">
-                    <Explain src="storage/images/sample.jpg">
+                    <Explain src="storage/images/sample-letter.jpg">
                         ①手紙をアップロード
                     </Explain>
                     <Explain src="storage/images/sample.jpg">

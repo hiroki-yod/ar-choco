@@ -22,7 +22,5 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "aframe": "^1.4.1",
-        "aframe-react": "^4.4.0"
     }
 }
