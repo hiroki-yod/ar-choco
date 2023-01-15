@@ -45,7 +45,7 @@ class ImageController extends Controller
             "image_url" => $image_url
         ]);
 
-        QrCode::generate("http://hiroki-yod.com/valentine/".strval($image->id), '../public/QR/' . strval($image->id) . '.svg');
+        QrCode::generate("https://ar-choco.herokuapp.com/valentine/".strval($image->id), '../public/QR/' . strval($image->id) . '.svg');
         return redirect(route("images.show", $image->id));
     }
 
