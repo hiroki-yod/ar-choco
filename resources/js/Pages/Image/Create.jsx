@@ -2,35 +2,45 @@ import PageTitle from "@/Components/PageTitle";
 import Explain from "@/Components/Explain";
 import InputFile from "@/Components/InputFile";
 import Button from "@/Components/Button";
+import Loading from "@/Components/Loading";
 import { useForm } from "@inertiajs/inertia-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Head } from "@inertiajs/inertia-react";
 
 const Create = ({ image }) => {
-    const { data, setData, post, errors } = useForm({ image: "" });
+    const { data, setData, post, errors, processing } = useForm({ image: "" });
 
     const handleSendImage = (e) => {
         e.preventDefault();
         post(route("images.store"));
     };
     const [preImage, setPreImage] = useState("");
+    const [valentine, setValentine] = useState(false);
+
+    useEffect(() => {
+        setValentine(true);
+        setTimeout(() => {
+            setValentine(false);
+        }, 5000);
+    }, []);
 
     return (
         <>
-            <div>
-                {image.map((i) => (
-                    <a href={`/valentine/${i.id}`}>{i.id}</a>
-                ))}
-            </div>
+            <Head>
+                <title>きゅーあーるせいせい</title>
+            </Head>
+            <Loading isLoading={processing || valentine} />
+
             <div className="text-center">
                 <PageTitle></PageTitle>
                 <div class="flex-row  mt-16 mx-10 sm:flex sm:justify-between sm:mx-20">
-                    <Explain src="storage/images/sample-letter.jpg">
+                    <Explain src="https://res.cloudinary.com/shoimages/image/upload/v1673764879/ar-choco/sample-letter_wveolg.jpg">
                         ①手紙をアップロード
                     </Explain>
-                    <Explain src="storage/images/sample.jpg">
+                    <Explain src="https://res.cloudinary.com/shoimages/image/upload/v1673764894/ar-choco/sample_w5cemw.jpg">
                         ②QRコードをダウンロード
                     </Explain>
-                    <Explain src="storage/images/sample.jpg">
+                    <Explain src="https://res.cloudinary.com/shoimages/image/upload/v1673764894/ar-choco/sample_w5cemw.jpg">
                         ③スマホで手紙を表示
                     </Explain>
                 </div>
