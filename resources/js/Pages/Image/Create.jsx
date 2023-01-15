@@ -1,3 +1,7 @@
+import PageTitle from "@/Components/PageTitle";
+import Explain from "@/Components/Explain";
+import InputFile from "@/Components/InputFile";
+import Button from "@/Components/Button";
 import { useForm } from "@inertiajs/inertia-react";
 import React from "react";
 
@@ -10,23 +14,34 @@ const Create = ({ image }) => {
     };
 
     return (
-        <div>
-            {image.map((i) => (
-                <a href={`/valentine/${i.id}`}>{i.id}</a>
-            ))}
-            <form onSubmit={handleSendImage}>
-                <input
-                    type="file"
-                    accept="image/*"
-                    encType="multipart/form-data"
-                    onChange={(e) => setData("image", e.target.files)}
-                />
-                <p className="text-red-600">{errors.image}</p>
-                <button className="px-5 py-2 text-white bg-red-500 border-b-4 border-red-700 font-bold hover:bg-opacity-90 hover:border-opacity-90 active:border-opacity-10 active:scale-95 rounded shadow-md">
-                    button
-                </button>
-            </form>
-        </div>
+        <>
+            <div>
+                {image.map((i) => (
+                    <a href={`/valentine/${i.id}`}>{i.id}</a>
+                ))}
+            </div>
+            <div className="text-center">
+                <PageTitle></PageTitle>
+                <div class="flex justify-between mt-16 mx-20">
+                    <Explain src="storage/images/sample.jpg">
+                        ①手紙をアップロード
+                    </Explain>
+                    <Explain src="storage/images/sample.jpg">
+                        ②QRコードをダウンロード
+                    </Explain>
+                    <Explain src="storage/images/sample.jpg">
+                        ③スマホで手紙を表示
+                    </Explain>
+                </div>
+                <form onSubmit={handleSendImage}>
+                    <InputFile
+                        onChange={(e) => setData("image", e.target.files)}
+                    ></InputFile>
+                    <p className="text-red-600">{errors.image}</p>
+                    <Button>Upload</Button>
+                </form>
+            </div>
+        </>
     );
 };
 
