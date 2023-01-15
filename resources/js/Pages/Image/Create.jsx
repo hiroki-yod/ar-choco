@@ -16,11 +16,6 @@ const Create = ({ image }) => {
 
     return (
         <>
-            <div>
-                {image.map((i) => (
-                    <a href={`/valentine/${i.id}`}>{i.id}</a>
-                ))}
-            </div>
             <div className="text-center">
                 <PageTitle></PageTitle>
                 <div class="flex-row  mt-16 mx-10 sm:flex sm:justify-between sm:mx-20">
