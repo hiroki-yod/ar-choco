@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Services\LineBotService as LINEBot;
+use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 
 class LineWebhookController extends Controller
 {
