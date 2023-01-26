@@ -35,7 +35,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/line/webhook/message', [LineWebhookController::class, 'message'])->name('line.webhook.message');
-Route::post('/test', [LineWebhookController::class, 'test']);
 
 
 require __DIR__.'/auth.php';
