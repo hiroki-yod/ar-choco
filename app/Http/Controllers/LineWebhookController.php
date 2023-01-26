@@ -60,6 +60,7 @@ class LineWebhookController extends Controller
                         $response = $bot->replyMessage($event['replyToken'], $replying_message);
                     } else {
                         error_log($response->getHTTPStatus());
+                        $response = $bot->replyText($event['replyToken'],"{$response->getHTTPStatus()}");
                     }
                     break;
 
