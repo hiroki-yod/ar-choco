@@ -18,4 +18,8 @@ class LineWebhookController extends Controller
         }
         return;
     }
+
+    public function test() {
+        return 'test';
+    }
 }
