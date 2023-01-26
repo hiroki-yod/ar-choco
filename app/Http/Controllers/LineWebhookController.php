@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class LineWebhookController extends Controller
+{
+    public function message(Request $request) {
+        $data = $request->all();
+        $events = $data['events'];
+
+        $httpClient = new CurlHTTPClient(config('services.line.message.channel_token'));
+        $bot = new LINEBot($httpClient, ['channelSecret' => config('services.line.message.channel_secret')]);
+
+        foreach ($events as $event) {
+            $response = $bot->replyText($event['replyToken'], 'メッセージ送信完了');
+        }
+        return;
+    }
+}
