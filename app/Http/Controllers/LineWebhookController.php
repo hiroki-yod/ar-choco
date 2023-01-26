@@ -47,7 +47,7 @@ class LineWebhookController extends Controller
                             'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661794835/publicdomainq-0055242amj_acor4i.jpg'
                         );
                         $response = $bot->replyText($event['replyToken'], '画像を受け取ったよ');
-                        $bot->replyMessage($replying_message);
+                        $bot->replyMessage($event['replyToken'], $replying_message);
                     } else {
                         error_log($response->getHTTPStatus());
                     }
