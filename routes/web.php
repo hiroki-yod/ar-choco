@@ -20,6 +20,10 @@ use Inertia\Inertia;
 Route::get("/", [ImageController::class, "create"]);
 Route::resource("images", ImageController::class)->except("create");
 
+Route::get("/create_letter", [ImageController::class, "create_letter"]);
+Route::get("/handwrite_letter", [ImageController::class, "handwrite_letter"]);
+
+Route::post("/store_create_letter", [ImageController::class, "store_create_letter"])->name('images.store_create_letter');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -32,6 +36,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 
 require __DIR__.'/auth.php';
