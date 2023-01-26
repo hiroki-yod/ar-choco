@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\LineBotService as LINEBot;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class LineWebhookController extends Controller
 {
@@ -42,9 +43,18 @@ class LineWebhookController extends Controller
                         $contentType = $response->getHeader('content-type');
                         $arrayContentType = explode('/', $contentType);
                         $ext = end($arrayContentType);
+
+
+                        $image_url = Cloudinary::upload($request->file('image')[0]->getRealPath())->getSecurePath();
+                        $image = Image::create([
+                            "id" => str()->uuid(),
+                            "image_url" => $image_url
+                        ]);
+                        $qr = QrCode::format('png')->size(300)->generate("https://ar-choco.herokuapp.com/valentine/".strval($image->id), '../public/QR/' . strval($image->id) . '.png');
+
                         $replying_message = new ImageMessageBuilder(
-                            'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661794835/publicdomainq-0055242amj_acor4i.jpg',
-                            'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661794835/publicdomainq-0055242amj_acor4i.jpg'
+                            asset("/QR/{$image->id}.svg"),
+                            asset("/QR/{$image->id}.svg")
                         );
                         // $response = $bot->replyText($event['replyToken'], '画像を受け取ったよ');
                         $response = $bot->replyMessage($event['replyToken'], $replying_message);
