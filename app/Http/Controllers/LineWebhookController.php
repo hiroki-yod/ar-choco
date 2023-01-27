@@ -62,6 +62,7 @@ class LineWebhookController extends Controller
                         $ext = end($arrayContentType);
                         $path = 'public/line/' .$event['message']['id'] .'.' .$ext;
                         Storage::put($path, $response->getRawBody());
+                        $bot->replyText($event['replyToken'], 'ここまではできてる');
 
 
                         $image_url = Cloudinary::upload(public_path(Storage::url($path)))->getSecurePath();
