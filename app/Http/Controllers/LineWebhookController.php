@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use App\Models\Image;
+
+use Cloudinary;
+
 use App\Services\LineBotService as LINEBot;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use Cloudinary;
-use Illuminate\Support\Facades\Storage;
-use App\Models\Image;
+use LINE\LINEBot\MessageBuilder\MultiMessageBuilder;
+use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
 class LineWebhookController extends Controller
 {
@@ -37,7 +40,14 @@ class LineWebhookController extends Controller
         foreach ($events as $event) {
             switch ($event['message']['type']) {
                 case 'text':
-                    $response = $bot->replyText($event['replyToken'], 'メッセージ送信完了');
+                    $t =  $event['message']['text'];
+                    if($t === '画像でARを生成'){
+                        $response = $bot->replyText($event['replyToken'], '画像を送信してください！'.PHP_EOL.'すると、ARを読み取るためのマーカーや、読み取ることでカメラが起動するQRコードが発行されます。');
+                    } elseif ($t === '文章でARを生成') {
+                        $response = $bot->replyText($event['replyToken'], 'ARレターに載せたい文章を送信してください！'.PHP_EOL.'すると、ARを読み取るためのマーカーや、読み取ることでカメラが起動するQRコードが発行されます。');
+                    } else {
+                        $response = $bot->replyText($event['replyToken'], 'まだ文章でARの生成はできないよ！！！ゴメンね！！！！');
+                    }
                     break;
 
                 case 'image':
@@ -52,21 +62,28 @@ class LineWebhookController extends Controller
                         $ext = end($arrayContentType);
                         $path = 'public/line/' .$event['message']['id'] .'.' .$ext;
                         Storage::put($path, $response->getRawBody());
-                        Storage::url($path);
 
-                        $image_url = Cloudinary::upload(url(Storage::url($path)))->getSecurePath();
-                        // $image = Image::create([
-                        //     "id" => str()->uuid(),
-                        //     "image_url" => $image_url
-                        // ]);
-                        // $qr = QrCode::format('png')->size(300)->generate("https://ar-choco.herokuapp.com/valentine/".strval($image->id), '../public/QR/' . strval($image->id) . '.png');
 
-                        $replying_message = new ImageMessageBuilder(
-                            'https://chart.apis.google.com/chart?chs=500x500&cht=qr&chl=https://a452-125-102-201-146.jp.ngrok.io/storage/line/17535944173884.jpeg',
-                            'https://chart.apis.google.com/chart?chs=240x240&cht=qr&chl=https://a452-125-102-201-146.jp.ngrok.io/storage/line/17535944173884.jpeg'
-                        );
+                        $image_url = Cloudinary::upload(public_path(Storage::url($path)))->getSecurePath();
+                        $image = Image::create([
+                            "id" => str()->uuid(),
+                            "image_url" => $image_url
+                        ]);
+
+                        Storage::delete($path);
+
+                        $messageBuilder = new MultiMessageBuilder();
+                        $messageBuilder->add(new ImageMessageBuilder(
+                            asset('pattern-ar.png'),
+                            asset('pattern-ar.png')
+                        ));
+                        $messageBuilder->add(new ImageMessageBuilder(
+                            "https://chart.apis.google.com/chart?chs=500x500&cht=qr&chl=https://ar-choco-heroku.herokuapp.com/valentine/{$image->id}",
+                            "https://chart.apis.google.com/chart?chs=240x240&cht=qr&chl=https://ar-choco-heroku.herokuapp.com/valentine/{$image->id}"
+                        ));
+                        $messageBuilder->add(new TextMessageBuilder('マーカーとQRコードを印刷してチョコレートに貼ってね！'.PHP_EOL.'明治のチョコレートでARを出現させたい場合はこのURLを相手に送ってね！'.PHP_EOL."https://ar-choco-heroku.herokuapp.com/valentine/{$image->id}".PHP_EOL.'このURLを読み取るとカメラが起動するよ！'));
                         // $response = $bot->replyText($event['replyToken'], '画像を受け取ったよ');
-                        $bot->replyMessage($event['replyToken'], $replying_message);
+                        $bot->replyMessage($event['replyToken'], $messageBuilder);
                     } else {
                         error_log($response->getHTTPStatus());
                     }
