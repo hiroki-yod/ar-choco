@@ -9,7 +9,7 @@ use Inertia\Inertia;
 use Cloudinary;
 use App\Http\Requests\LetterRequest;
 
-class ImageController extends Controller
+class LetterController extends Controller
 {
     public function index()
     {

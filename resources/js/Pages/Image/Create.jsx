@@ -12,7 +12,7 @@ const Create = ({ image }) => {
 
     const handleSendImage = (e) => {
         e.preventDefault();
-        post(route("images.store"));
+        post(route("letters.store"));
     };
     const [preImage, setPreImage] = useState("");
     const [valentine, setValentine] = useState(false);
