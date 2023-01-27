@@ -8,6 +8,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Inertia\Inertia;
 use Cloudinary;
 use App\Http\Requests\ImageRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ImageController extends Controller
 {
@@ -21,34 +22,30 @@ class ImageController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Image $image)
     {
         return Inertia::render("Image/Create",['image' => $image->get()]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ImageRequest $request)
+    public function handwrite_letter()
     {
-        $image_url = Cloudinary::upload($request->file('image')[0]->getRealPath())->getSecurePath();
-        $image = Image::create([
-            "id" => str()->uuid(),
-            "image_url" => $image_url
-        ]);
+        return Inertia::render("Image/HandwriteLetter");
+    }
 
-        QrCode::generate("https://ar-choco.herokuapp.com/valentine/".strval($image->id), '../public/QR/' . strval($image->id) . '.svg');
+    public function store(ImageRequest $request )
+    {
+        // dd($request->file('image'));
+        $image_instance = new Image;
+        $image = $image_instance->storeImage(($request->file('image')));
+        $image_instance->createQRcode($image);
         return redirect(route("images.show", $image->id));
     }
 
+    public function create_letter()
+    {
+        return Inertia::render("Image/CreateLetter");
+    }
+    
     /**
      * Display the specified resource.
      *
