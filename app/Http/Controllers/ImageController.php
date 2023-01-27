@@ -2,45 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Image;
+use App\Models\Letter;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Inertia\Inertia;
 use Cloudinary;
-use App\Http\Requests\ImageRequest;
+use App\Http\Requests\LetterRequest;
 
 class ImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Image $image)
+    public function create(Letter $image)
     {
         return Inertia::render("Image/Create",['image' => $image->get()]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ImageRequest $request)
+    public function store(LetterRequest $request)
     {
         $image_url = Cloudinary::upload($request->file('image')[0]->getRealPath())->getSecurePath();
-        $image = Image::create([
+        $image = Letter::create([
             "id" => str()->uuid(),
             "image_url" => $image_url
         ]);
@@ -49,52 +33,27 @@ class ImageController extends Controller
         return redirect(route("images.show", $image->id));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Image $image)
+    public function show(Letter $image)
     {
         return Inertia::render("Image/Show", ["image" => $image]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Image $image)
+    public function edit(Letter $image)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Image $image)
+    public function update(Request $request, Letter $image)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Image $image)
+    public function destroy(Letter $image)
     {
         //
     }
 
-    public function valentine(Image $image)
+    public function valentine(Letter $image)
     {
         return view('valentine',compact('image'));
     }
