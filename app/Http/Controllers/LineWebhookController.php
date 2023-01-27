@@ -70,7 +70,7 @@ class LineWebhookController extends Controller
                             "image_url" => $image_url
                         ]);
 
-                        Storage::delete($path);
+                        // Storage::delete($path);
 
                         $messageBuilder = new MultiMessageBuilder();
                         $messageBuilder->add(new ImageMessageBuilder(
