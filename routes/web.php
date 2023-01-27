@@ -20,6 +20,8 @@ use Inertia\Inertia;
 Route::get("/", [ImageController::class, "create"]);
 Route::resource("images", ImageController::class)->except("create");
 
+Route::post("/store", [ImageController::class, "store"])->name('letters.store');
+
 Route::get("/create_letter", [ImageController::class, "create_letter"]);
 Route::get("/handwrite_letter", [ImageController::class, "handwrite_letter"]);
 

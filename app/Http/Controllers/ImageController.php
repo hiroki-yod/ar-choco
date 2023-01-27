@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Image;
+use App\Models\Letter;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Inertia\Inertia;
 use Cloudinary;
 use App\Http\Requests\ImageRequest;
 use Illuminate\Support\Facades\Auth;
+use Cloudinary\Api\Upload\UploadApi;
 
 class ImageController extends Controller
 {
@@ -22,7 +23,7 @@ class ImageController extends Controller
         //
     }
 
-    public function create(Image $image)
+    public function create(Letter $image)
     {
         return Inertia::render("Image/Create",['image' => $image->get()]);
     }
@@ -32,10 +33,10 @@ class ImageController extends Controller
         return Inertia::render("Image/HandwriteLetter");
     }
 
-    public function store(ImageRequest $request )
+    public function store(Request $request )
     {
-        $image_instance = new Image;
-        $image = $image_instance->storeImage(($request->file('image')));
+        $image_instance = new Letter();
+        $image = $image_instance->storeImage(($request->file('image')[0]->getRealPath()));
         $image_instance->createQRcode($image);
         return redirect(route("images.show", $image->id));
     }
@@ -45,63 +46,44 @@ class ImageController extends Controller
         return Inertia::render("Image/CreateLetter");
     }
 
-    public function store_create_letter(Request $request)
+    public function store_create_letter(Request $request, Letter $letter)
     {
-        $image_instance = new Image;
-        $input_image = $request->all();
-        $image = $image_instance->fill($input_image)->createLetter()->save();
-        
-        // ------------------------------------------------------------------------------------------------------------------------------------
-        dd($image);
+        $lettere_instance = new Letter;
+        $input_letter = $request->all();
+        // dd($input_letter["body"]);
+        $create_letter = $lettere_instance->createLetter($input_letter);
+
+        // $create_letter = $lettere_instance->createLetter();
+        dd($create_letter);
+        dd($lettere_instance->fill($input_letter)->createLetter());
+
+        // $image = $lettere_instance->storeImage($create_letter);
+        // $image = $lettere_instance->fill($input_letter)->createLetter()->save();
+    
         // return redirect(route("images.show", $image->id));
     }
     
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Image $image)
+    public function show(Letter $image)
     {
         return Inertia::render("Image/Show", ["image" => $image]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Image $image)
+    public function edit(Letter $image)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Image $image)
+    public function update(Request $request, Letter $image)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Image $image)
+    public function destroy(Letter $image)
     {
         //
     }
 
-    public function valentine(Image $image)
+    public function valentine(Letter $image)
     {
         return view('valentine',compact('image'));
     }

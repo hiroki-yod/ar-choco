@@ -12,7 +12,7 @@ const HandwriteLetter = ({ image }) => {
 
     const handleSendImage = (e) => {
         e.preventDefault();
-        post(route("images.store"));
+        post(route("letters.store"));
     };
     const [preImage, setPreImage] = useState("");
     const [valentine, setValentine] = useState(false);
@@ -94,7 +94,7 @@ const HandwriteLetter = ({ image }) => {
                             戻る
                         </p>
                     </a>
-                    <a href="/handwrite_letter">
+                    <a href="/create_letter">
                         <p className="text-blue-700 text-lg underline hover:font-bold mb-4">
                             手紙を作って送る
                         </p>
