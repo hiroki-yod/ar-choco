@@ -34,7 +34,6 @@ class ImageController extends Controller
 
     public function store(ImageRequest $request )
     {
-        // dd($request->file('image'));
         $image_instance = new Image;
         $image = $image_instance->storeImage(($request->file('image')));
         $image_instance->createQRcode($image);
@@ -44,6 +43,17 @@ class ImageController extends Controller
     public function create_letter()
     {
         return Inertia::render("Image/CreateLetter");
+    }
+
+    public function store_create_letter(Request $request)
+    {
+        $image_instance = new Image;
+        $input_image = $request->all();
+        $image = $image_instance->fill($input_image)->createLetter()->save();
+        
+        // ------------------------------------------------------------------------------------------------------------------------------------
+        dd($image);
+        // return redirect(route("images.show", $image->id));
     }
     
     /**
