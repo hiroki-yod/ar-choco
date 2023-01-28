@@ -7,8 +7,8 @@ import { useForm } from "@inertiajs/inertia-react";
 import React, { useEffect, useState } from "react";
 import { Head } from "@inertiajs/inertia-react";
 
-const HandwriteLetter = ({ image }) => {
-    const { data, setData, post, errors, processing } = useForm({ image: "" });
+const HandwriteLetter = ({ letter }) => {
+    const { data, setData, post, errors, processing } = useForm({ letter: "" });
 
     const handleSendImage = (e) => {
         e.preventDefault();
@@ -32,9 +32,6 @@ const HandwriteLetter = ({ image }) => {
             <Loading isLoading={processing || valentine} />
             <div className="mx-auto flex flex-col items-center justify-center w-screen h-screen">
                 <form onSubmit={handleSendImage}>
-                    {/* <InputFile
-                        onChange={(e) => setData("image", e.target.files)}
-                    ></InputFile> */}
                     <div className="sm:flex sm:justify-center mb-4 md:items-center">
                         <div className="mt-6 mx-6">
                             {!preImage ? (
@@ -44,7 +41,7 @@ const HandwriteLetter = ({ image }) => {
                                         name="file"
                                         className="hidden"
                                         onChange={(e) => {
-                                            setData("image", e.target.files);
+                                            setData("letter", e.target.files);
                                             const reader = new FileReader();
                                             reader.onload = (e) => {
                                                 setPreImage(e.target.result);
@@ -78,13 +75,13 @@ const HandwriteLetter = ({ image }) => {
                                     <img className="h-40" src={preImage} />
                                 </div>
                             )}
-                            {errors.images && (
+                            {errors.letters && (
                                 <div className="text-red-600">
-                                    {errors.images}
+                                    {errors.letters}
                                 </div>
                             )}
                         </div>
-                        <p className="text-red-600">{errors.image}</p>
+                        <p className="text-red-600">{errors.letter}</p>
                         <Button>Upload</Button>
                     </div>
                 </form>

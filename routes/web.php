@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ImageController;
+use App\Http\Controllers\LetterController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,21 +17,20 @@ use Inertia\Inertia;
 |
 */
 
-Route::get("/", [ImageController::class, "create"]);
-Route::resource("images", ImageController::class)->except("create");
 
-Route::post("/store", [ImageController::class, "store"])->name('letters.store');
+Route::get("/", [LetterController::class, "create"]);
+Route::resource("letters", LetterController::class)->except("create");
 
-Route::get("/create_letter", [ImageController::class, "create_letter"]);
-Route::get("/handwrite_letter", [ImageController::class, "handwrite_letter"]);
+Route::get("/create_letter", [LetterController::class, "create_letter"]);
+Route::get("/handwrite_letter", [LetterController::class, "handwrite_letter"]);
 
-Route::post("/store_create_letter", [ImageController::class, "store_create_letter"])->name('images.store_create_letter');
+Route::post("/store_create_letter", [LetterController::class, "store_create_letter"])->name('images.store_create_letter');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/valentine/{image}', [ImageController::class, "valentine"]);
+Route::get('/valentine/{letter}', [LetterController::class, "valentine"]);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

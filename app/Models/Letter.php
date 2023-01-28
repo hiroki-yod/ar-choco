@@ -10,9 +10,6 @@ use Cloudinary;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Ramsey\Uuid\Uuid;
 use Intervention\Image\Facades\Image;
-use Cloudinary\Api\Upload\UploadApi;
-use Illuminate\Support\Facades\Storage;
-
 
 class Letter extends Model
 {
@@ -93,32 +90,18 @@ class Letter extends Model
         $x = 90;
         // 画像と合成
         for($i = 0; $i < count($body); $i++) {
-            $y = 280 + $i * 33;
+            $y = 180 + $i * 50;
             $word = $body[$i];
             $letter->text($word, $x, $y, function($font) use ($font_path, $color){
                 $font->file($font_path); // 日本語フォントファイル
-                $font->size(22); // 文字サイズ
+                $font->size(25); // 文字サイズ
                 $font->color($color); // 文字色
             });
         }
         // 一時保存
-        $save_path = storage_path('app/images/smile_2.png');
+        $file_name = Uuid::uuid4()->toString();
+        $save_path = storage_path('app/images/'. $file_name . '.png');
         $letter->save($save_path);
-        
-
-        // $file_name = Uuid::uuid4()->toString();
-        // Storage::put('images/letters/' . $file_name . '.jpg', $letter);
-        // $rpath = realpath('strage/app/images/letters/' . $file_name . '.jpg'); 
-        
-        // $letter->save(storage_path('/app/public/images/diaries/' . $file_name . '.jpg'));
-
-        return $letter->response();
-
-        // $image_url = Cloudinary::upload($letter)->getSecurePath();
-        // $image = Letter::create([
-        //     "id" => str()->uuid(),
-        //     "image_url" => $image_url
-        // ]);
-        // return $image;
+        return $save_path;
     }
 }

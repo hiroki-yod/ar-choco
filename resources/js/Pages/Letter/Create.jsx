@@ -7,14 +7,8 @@ import { useForm } from "@inertiajs/inertia-react";
 import React, { useEffect, useState } from "react";
 import { Head } from "@inertiajs/inertia-react";
 
-const Create = ({ image }) => {
-    const { data, setData, post, errors, processing } = useForm({ image: "" });
-
-    // const handleSendImage = (e) => {
-    //     e.preventDefault();
-    //     post(route("images.store"));
-    // };
-    // const [preImage, setPreImage] = useState("");
+const Create = ({ letter }) => {
+    const { data, setData, post, errors, processing } = useForm({ letter: "" });
     const [valentine, setValentine] = useState(false);
 
     useEffect(() => {

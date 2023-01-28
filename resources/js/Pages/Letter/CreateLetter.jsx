@@ -7,33 +7,6 @@ const WhiteStyle = styled.div`
     width: 80%;
 `;
 
-const ReceiverStyle = styled.input`
-    border-bottom: 1px solid #cccccc;
-    border-right: none;
-    border-left: none;
-    border-top: none;
-`;
-
-const ReceiverWrapper = styled.div`
-    margin-right: auto;
-    margin-left: auto;
-    width: 60%;
-`;
-
-const SenderStyle = styled.input`
-    border-bottom: 1px solid #cccccc;
-    border-right: none;
-    border-left: none;
-    border-top: none;
-`;
-
-const SenderWrapper = styled.div`
-    margin-right: auto;
-    margin-left: auto;
-    width: 60%;
-`;
-
-
 const TextStyle = styled.textarea`
     line-height: 30px;
     background: linear-gradient(to bottom, #cccccc 1px, white 1px);
@@ -60,10 +33,7 @@ const TextWrapper = styled.div`
 
 export default React.forwardRef(function CreateLetter(props, ref) {
     const { data, setData, post, errors, processing } = useForm({
-        receiver: "",
         body: "",
-        sender: ""
-
     });
 
     function onSubmit(e) {
@@ -77,19 +47,6 @@ export default React.forwardRef(function CreateLetter(props, ref) {
             <h3 className="text-3xl">手紙を書こう</h3>
             <WhiteStyle ref={ref}>
                 <form onSubmit={onSubmit}>
-                    <ReceiverWrapper>
-                        <ReceiverStyle
-                            id="receiver"
-                            type="text"
-                            value={data.title}
-                            placeholder="相手のお名前"
-                            maxLength="15"
-                            onChange={(e) => setData("receiver", e.target.value)}
-                        />
-                        {errors.receiver && (
-                            <div className="text-red-600">{errors.receiver}</div>
-                        )}
-                    </ReceiverWrapper>
                     <TextWrapper>
                         <TextStyle
                             id="description"
@@ -102,19 +59,6 @@ export default React.forwardRef(function CreateLetter(props, ref) {
                             <div className="text-red-600">{errors.body}</div>
                         )}
                     </TextWrapper>
-                    <SenderWrapper>
-                        <SenderStyle
-                            id="sender"
-                            type="text"
-                            value={data.title}
-                            placeholder="あなたのお名前"
-                            maxLength="15"
-                            onChange={(e) => setData("sender", e.target.value)}
-                        />
-                        {errors.sender && (
-                            <div className="text-red-600">{errors.sender}</div>
-                        )}
-                    </SenderWrapper>
                     <div className="flex justify-end pr-2">
                         <button
                             onClick={onSubmit}
