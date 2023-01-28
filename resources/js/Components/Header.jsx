@@ -10,7 +10,9 @@ export default function Explain() {
     const [isOpenDrawer, setDrawerState] = useState(false);
     return (
         <>
-            <div className="ar-choco-brown-back h-14 flex flex-end">
+            <div className="ar-choco-brown-back h-16 flex">
+                <img src="/logo.png" className="h-4/5 my-auto ml-2"></img>
+                <p className="ar-choco-pink my-auto ml-4">AR-LETTER</p>
                 <MenuIcon
                     fontSize="large"
                     className="ar-choco-green ml-auto mr-4 my-auto"

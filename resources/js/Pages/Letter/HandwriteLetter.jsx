@@ -3,9 +3,11 @@
 // import InputFile from "@/Components/InputFile";
 import Button from "@/Components/Button";
 import Loading from "@/Components/Loading";
+import ChocoButton from "@/Components/ChocoButton";
 import { useForm } from "@inertiajs/inertia-react";
 import React, { useEffect, useState } from "react";
 import { Head } from "@inertiajs/inertia-react";
+import Layout from "@/Layouts/Layout";
 
 const HandwriteLetter = ({ letter }) => {
     const { data, setData, post, errors, processing } = useForm({ letter: "" });
@@ -16,13 +18,6 @@ const HandwriteLetter = ({ letter }) => {
     };
     const [preImage, setPreImage] = useState("");
     const [valentine, setValentine] = useState(false);
-
-    useEffect(() => {
-        setValentine(true);
-        setTimeout(() => {
-            setValentine(false);
-        }, 5000);
-    }, []);
 
     return (
         <>
@@ -86,20 +81,18 @@ const HandwriteLetter = ({ letter }) => {
                     </div>
                 </form>
                 <div className="flex">
-                    <a href="/">
-                        <p className="text-blue-700 text-lg underline hover:font-bold mb-4 mr-4">
-                            戻る
-                        </p>
-                    </a>
-                    <a href="/create_letter">
-                        <p className="text-blue-700 text-lg underline hover:font-bold mb-4">
-                            手紙を作って送る
-                        </p>
-                    </a>
+                    <ChocoButton href="/" type="back">
+                        戻る
+                    </ChocoButton>
+                    <ChocoButton href="/create_letter">
+                        手紙を作って送る
+                    </ChocoButton>
                 </div>
             </div>
         </>
     );
 };
+
+HandwriteLetter.layout = (page) => <Layout children={page} />;
 
 export default HandwriteLetter;

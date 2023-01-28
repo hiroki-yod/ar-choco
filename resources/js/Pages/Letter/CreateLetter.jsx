@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import { Link, Head, useForm } from "@inertiajs/inertia-react";
 import styled from "styled-components";
 import SelectTemplate from "@/Components/SelectTemplate";
+import Layout from "@/Layouts/Layout";
+import ChocoButton from "@/Components/ChocoButton";
 
 const TextStyle = styled.textarea`
     margin-top: 13%;
@@ -9,7 +11,7 @@ const TextStyle = styled.textarea`
     margin-right: auto;
     line-height: 30px;
     background-color: transparent;
-    width:100%;
+    width: 100%;
     height: 82%;
     /* 枠線を消す */
     border: none;
@@ -19,8 +21,7 @@ const TextStyle = styled.textarea`
     outline: none;
 `;
 
-
-export default React.forwardRef(function CreateLetter(props, ref) {
+const CreateLetter = React.forwardRef((props, ref) => {
     const { data, setData, post, errors, processing } = useForm({
         body: "",
         template: "images/letter_template/chocolate.png",
@@ -75,39 +76,40 @@ export default React.forwardRef(function CreateLetter(props, ref) {
                         className="w-7/12 h-5/12 bg-cover "
                         style={{
                             backgroundImage: `url(${selectedTemplate})`,
-                            aspectRatio:7/5,
+                            aspectRatio: 7 / 5,
                         }}
                     >
-                        
-                                <TextStyle
-                                    id="description"
-                                    value={data.body}
-                                    onChange={(e) => {
-                                        setData("body", e.target.value);
-                                    }}
-                                    className={
-                                        selectedTemplate === "images/letter_template/chocolate.png"
-                                            ? "text-white"
-                                            : ""
-                                    }
-                                ></TextStyle>
-                                {errors.body && (
-                                    <div className="text-red-600">
-                                        {errors.body}
-                                    </div>
-                                )}
-                                
+                        <TextStyle
+                            id="description"
+                            value={data.body}
+                            onChange={(e) => {
+                                setData("body", e.target.value);
+                            }}
+                            className={
+                                selectedTemplate ===
+                                "images/letter_template/chocolate.png"
+                                    ? "text-white"
+                                    : ""
+                            }
+                        ></TextStyle>
+                        {errors.body && (
+                            <div className="text-red-600">{errors.body}</div>
+                        )}
                     </div>
                     <div className="flex justify-end pr-2">
-                        <button onClick={selectTemplate}>
+                        <ChocoButton onClick={selectTemplate} type="back">
                             別のカードを選ぶ
-                        </button>
-                        <button onClick={onSubmit} disabled={processing}>
+                        </ChocoButton>
+                        <ChocoButton onClick={onSubmit} disabled={processing}>
                             メッセージを送る
-                        </button>
+                        </ChocoButton>
                     </div>
                 </div>
             )}
         </>
     );
 });
+
+CreateLetter.layout = (page) => <Layout children={page} />;
+
+export default CreateLetter;

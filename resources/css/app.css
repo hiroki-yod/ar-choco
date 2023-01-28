@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps&display=swap");
-@import url("test.css");
+@import url("button.css");
+@import url("https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,6 +25,10 @@
 
 html {
     background-color: #fde4df;
+}
+
+p {
+    font-family: "Sawarabi Mincho", serif;
 }
 
 .open {

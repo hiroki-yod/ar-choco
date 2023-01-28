@@ -1,10 +1,12 @@
-import { Helmet } from "react-helmet"
+import Header from "@/Components/Header";
 
 const Layout = ({ children }) => {
-  return (
-    <div>
-        {children}
-    </div>);
+    return (
+        <div>
+            <Header></Header>
+            {children}
+        </div>
+    );
 };
 
 export default Layout;

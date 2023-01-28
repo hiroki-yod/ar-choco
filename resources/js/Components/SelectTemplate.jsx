@@ -1,3 +1,5 @@
+import ChocoButton from "@/Components/ChocoButton";
+
 const SelectTemplate = ({
     selectedTemplate,
     templates,
@@ -33,8 +35,10 @@ const SelectTemplate = ({
                     })}
                 </div>
                 <div className="flex justify-end pr-2">
-                    <button onClick={toHome}>戻る</button>
-                    <button onClick={selectTemplate}>決定</button>
+                    <ChocoButton href="/" type="back">
+                        戻る
+                    </ChocoButton>
+                    <ChocoButton onClick={selectTemplate}>決定</ChocoButton>
                 </div>
             </div>
         </>
