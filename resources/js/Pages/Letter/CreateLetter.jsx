@@ -69,8 +69,7 @@ const CreateLetter = React.forwardRef((props, ref) => {
                     selectTemplate={selectTemplate}
                 />
             ) : (
-                <div className="w-screen h-screen justify-center items-center flex flex-col">
-                    <h3 className="text-3xl">手紙を書こう</h3>
+                <div className="w-screen h-screen sm:justify-center my-16 sm:my-2 items-center flex flex-col">
                     <div
                         ref={ref}
                         className="w-7/12 h-5/12 bg-cover "

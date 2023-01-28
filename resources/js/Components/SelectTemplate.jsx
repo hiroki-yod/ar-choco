@@ -12,12 +12,12 @@ const SelectTemplate = ({
 
     return (
         <>
-            <div className="w-screen h-screen justify-center items-center flex flex-col">
+            <div className="w-full h-full justify-center items-center flex flex-col">
                 <p>メッセージカードのデザインを選ぶ</p>
-                <div className="flex flex-wrap pr-3 pl-3">
+                <div className="flex flex-wrap px-4 sm:px-28">
                     {templates.map((template) => {
                         return (
-                            <div key={template} className="w-1/3 p-3">
+                            <div key={template} className="w-1/2 sm:w-1/3 p-3">
                                 <div
                                     className={
                                         template == selectedTemplate
