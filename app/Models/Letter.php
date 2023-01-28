@@ -77,7 +77,8 @@ class Letter extends Model
     public function createLetter($input_letter)
     {
         // テンプレートを取得
-        $template_path = public_path('images/letter.png');
+        // $template_path = public_path('images/letter.png');
+        $template_path = $input_letter["template"];
         $letter = Image::make($template_path);
         // フォント、色などを設定
         $fonts = ['font/mogihaPen.ttf', 'font/beautiful_font.ttf', 'font/shokakisarari.ttf', 'font/acgyosyo.ttf'];
@@ -94,7 +95,7 @@ class Letter extends Model
             $word = $body[$i];
             $letter->text($word, $x, $y, function($font) use ($font_path, $color){
                 $font->file($font_path); // 日本語フォントファイル
-                $font->size(25); // 文字サイズ
+                $font->size(50); // 文字サイズ
                 $font->color($color); // 文字色
             });
         }
