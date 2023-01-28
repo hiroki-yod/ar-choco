@@ -16,45 +16,45 @@ class LetterController extends Controller
         //
     }
 
-    public function create(Letter $image)
+    public function create(Letter $letter)
     {
-        return Inertia::render("Image/Create",['image' => $image->get()]);
+        return Inertia::render("Letter/Create",['letter' => $letter->get()]);
     }
 
     public function store(LetterRequest $request)
     {
-        $image_url = Cloudinary::upload($request->file('image')[0]->getRealPath())->getSecurePath();
-        $image = Letter::create([
+        $image_url = Cloudinary::upload($request->file('letter')[0]->getRealPath())->getSecurePath();
+        $letter = Letter::create([
             "id" => str()->uuid(),
             "image_url" => $image_url
         ]);
 
-        QrCode::generate("https://ar-choco.herokuapp.com/valentine/".strval($image->id), '../public/QR/' . strval($image->id) . '.svg');
-        return redirect(route("images.show", $image->id));
+        QrCode::generate("https://ar-choco.herokuapp.com/valentine/".strval($letter->id), '../public/QR/' . strval($letter->id) . '.svg');
+        return redirect(route("letters.show", $letter->id));
     }
 
-    public function show(Letter $image)
+    public function show(Letter $letter)
     {
-        return Inertia::render("Image/Show", ["image" => $image]);
+        return Inertia::render("Letter/Show", ["letter" => $letter]);
     }
 
-    public function edit(Letter $image)
-    {
-        //
-    }
-
-    public function update(Request $request, Letter $image)
+    public function edit(Letter $letter)
     {
         //
     }
 
-    public function destroy(Letter $image)
+    public function update(Request $request, Letter $letter)
     {
         //
     }
 
-    public function valentine(Letter $image)
+    public function destroy(Letter $letter)
     {
-        return view('valentine',compact('image'));
+        //
+    }
+
+    public function valentine(Letter $letter)
+    {
+        return view('valentine',compact('letter'));
     }
 }

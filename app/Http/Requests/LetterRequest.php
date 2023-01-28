@@ -24,7 +24,7 @@ class LetterRequest extends FormRequest
     public function rules()
     {
         return [
-            "image" => "required"
+            "letter" => "required"
         ];
     }
 }

@@ -7,8 +7,8 @@ import { useForm } from "@inertiajs/inertia-react";
 import React, { useEffect, useState } from "react";
 import { Head } from "@inertiajs/inertia-react";
 
-const Create = ({ image }) => {
-    const { data, setData, post, errors, processing } = useForm({ image: "" });
+const Create = ({ letter }) => {
+    const { data, setData, post, errors, processing } = useForm({ letter: "" });
 
     const handleSendImage = (e) => {
         e.preventDefault();
@@ -57,7 +57,7 @@ const Create = ({ image }) => {
                                         name="file"
                                         className="hidden"
                                         onChange={(e) => {
-                                            setData("image", e.target.files);
+                                            setData("letter", e.target.files);
                                             const reader = new FileReader();
                                             reader.onload = (e) => {
                                                 setPreImage(e.target.result);
@@ -91,13 +91,13 @@ const Create = ({ image }) => {
                                     <img className="h-40" src={preImage} />
                                 </div>
                             )}
-                            {errors.images && (
+                            {errors.letters && (
                                 <div className="text-red-600">
-                                    {errors.images}
+                                    {errors.letters}
                                 </div>
                             )}
                         </div>
-                        <p className="text-red-600">{errors.image}</p>
+                        <p className="text-red-600">{errors.letter}</p>
                         <Button>Upload</Button>
                     </div>
                 </form>

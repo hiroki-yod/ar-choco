@@ -4,7 +4,7 @@ import React from "react";
 import { Head } from "@inertiajs/inertia-react";
 
 const Show = (props) => {
-    const { image } = props;
+    const { letter } = props;
     return (
         <div className="text-center">
             <Head>
@@ -13,8 +13,8 @@ const Show = (props) => {
             <PageTitle></PageTitle>
             <div className="sm:flex sm:justify-center text-center">
                 <Marker
-                    href={`/QR/${image.id}.svg`}
-                    src={`/QR/${image.id}.svg`}
+                    href={`/QR/${letter.id}.svg`}
+                    src={`/QR/${letter.id}.svg`}
                 >
                     QRコードはこちら
                 </Marker>
