@@ -11,6 +11,7 @@ const Show = (props) => {
                 <title>きゅーあーるせいせい</title>
             </Head>
             <PageTitle></PageTitle>
+            <a href={"http://line.me/R/msg/text/?" + location.href }>LINEに送る</a>
             <div className="sm:flex sm:justify-center text-center">
                 <Marker
                     href={`/QR/${letter.id}.svg`}
@@ -22,6 +23,7 @@ const Show = (props) => {
                     ARマーカーはこちら
                 </Marker>
             </div>
+
             <a href="/">
                 <p className="text-blue-700 text-lg underline hover:font-bold mb-4">
                     TOPページに戻る
