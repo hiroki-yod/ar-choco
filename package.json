@@ -23,6 +23,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "html2canvas": "^1.4.1"
+        "html2canvas": "^1.4.1",
+        "styled-components": "^5.3.6"
     }
 }

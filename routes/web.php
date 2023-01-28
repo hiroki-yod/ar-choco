@@ -18,8 +18,14 @@ use Inertia\Inertia;
 |
 */
 
+
 Route::get("/", [LetterController::class, "create"]);
 Route::resource("letters", LetterController::class)->except("create");
+
+Route::get("/create_letter", [LetterController::class, "create_letter"]);
+Route::get("/handwrite_letter", [LetterController::class, "handwrite_letter"]);
+
+Route::post("/store_create_letter", [LetterController::class, "store_create_letter"])->name('images.store_create_letter');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -34,6 +40,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/line/webhook/message', [LineWebhookController::class, 'message'])->name('line.webhook.message');
-
 
 require __DIR__.'/auth.php';

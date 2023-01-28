@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Letter;
 use Illuminate\Http\Request;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Inertia\Inertia;
-use Cloudinary;
-use App\Http\Requests\LetterRequest;
 
 class LetterController extends Controller
 {
@@ -21,17 +18,34 @@ class LetterController extends Controller
         return Inertia::render("Letter/Create",['letter' => $letter->get()]);
     }
 
-    public function store(LetterRequest $request)
+    public function handwrite_letter(Letter $letter)
     {
-        $image_url = Cloudinary::upload($request->file('letter')[0]->getRealPath())->getSecurePath();
-        $letter = Letter::create([
-            "id" => str()->uuid(),
-            "image_url" => $image_url
-        ]);
+        return Inertia::render("Letter/HandwriteLetter",['letter' => $letter->get()]);
+    }
 
-        QrCode::generate("https://ar-choco.herokuapp.com/valentine/".strval($letter->id), '../public/QR/' . strval($letter->id) . '.svg');
+    public function store(Request $request)
+    {
+        $lettere_instance = new Letter();
+        $letter = $lettere_instance->storeImage(($request->file('letter')[0]->getRealPath()));
+        $lettere_instance->createQRcode($letter);
         return redirect(route("letters.show", $letter->id));
     }
+
+    public function create_letter()
+    {
+        return Inertia::render("Letter/CreateLetter");
+    }
+
+    public function store_create_letter(Request $request, Letter $letter)
+    {
+        $lettere_instance = new Letter;
+        $input_letter = $request->all();
+        $create_letter = $lettere_instance->createLetter($input_letter);
+        $letter = $lettere_instance->storeImage(($create_letter));
+        $lettere_instance->createQRcode($letter);
+        return redirect(route("letters.show", $letter->id));
+    }
+
 
     public function show(Letter $letter)
     {
