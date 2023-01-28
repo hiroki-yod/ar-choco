@@ -100,7 +100,7 @@ class Letter extends Model
         }
         // 一時保存
         $file_name = Uuid::uuid4()->toString();
-        $save_path = storage_path('app/images/'. $file_name . '.png');
+        $save_path = storage_path('app/public/images/'. $file_name . '.png');
         $letter->save($save_path);
         return $save_path;
     }
