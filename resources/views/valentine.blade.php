@@ -48,7 +48,7 @@
     <a-scene embedded arjs="debugUIEnabled:false;">
       <a-assets>
         <!-- 画像をプリロード -->
-        <img id="levtech" src={{ $image->image_url }} />
+        <img id="levtech" src={{ $letter->image_url }} />
         <a-asset-item id="ribbon" src={{ asset('/ribbon.obj') }}></a-asset-item>
         <a-asset-item id="mtl" src={{ asset('/ribbon.mtl') }}></a-asset-item>
       </a-assets>

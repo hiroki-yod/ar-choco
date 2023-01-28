@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
-use App\Models\Image;
+use App\Models\Letter;
 
 use Cloudinary;
 
@@ -65,7 +65,7 @@ class LineWebhookController extends Controller
                         $image_url = Cloudinary::upload(public_path(Storage::url($path)))->getSecurePath();
 
                         //DBに保存
-                        $image = Image::create([
+                        $letter = Letter::create([
                             "id" => str()->uuid(),
                             "image_url" => $image_url
                         ]);
@@ -79,10 +79,10 @@ class LineWebhookController extends Controller
                             asset('pattern-ar.png')
                         ));
                         $messageBuilder->add(new ImageMessageBuilder(
-                            "https://chart.apis.google.com/chart?chs=500x500&cht=qr&chl=https://4971-2400-2411-13e1-8700-a550-ab18-cc19-b936.jp.ngrok.io/valentine/{$image->id}",
-                            "https://chart.apis.google.com/chart?chs=240x240&cht=qr&chl=https://4971-2400-2411-13e1-8700-a550-ab18-cc19-b936.jp.ngrok.io/valentine/{$image->id}"
+                            "https://chart.apis.google.com/chart?chs=500x500&cht=qr&chl=https://4971-2400-2411-13e1-8700-a550-ab18-cc19-b936.jp.ngrok.io/valentine/{$letter->id}",
+                            "https://chart.apis.google.com/chart?chs=240x240&cht=qr&chl=https://4971-2400-2411-13e1-8700-a550-ab18-cc19-b936.jp.ngrok.io/valentine/{$letter->id}"
                         ));
-                        $messageBuilder->add(new TextMessageBuilder('マーカーとQRコードを印刷してチョコレートに貼ってね！'.PHP_EOL.'明治のチョコレートでARを出現させたい場合はこのURLを相手に送ってね！'.PHP_EOL."https://4971-2400-2411-13e1-8700-a550-ab18-cc19-b936.jp.ngrok.io/valentine/{$image->id}".PHP_EOL.'このURLを読み取るとカメラが起動するよ！'));
+                        $messageBuilder->add(new TextMessageBuilder('マーカーとQRコードを印刷してチョコレートに貼ってね！'.PHP_EOL.'明治のチョコレートでARを出現させたい場合はこのURLを相手に送ってね！'.PHP_EOL."https://4971-2400-2411-13e1-8700-a550-ab18-cc19-b936.jp.ngrok.io/valentine/{$letter->id}".PHP_EOL.'このURLを読み取るとカメラが起動するよ！'));
                         // $response = $bot->replyText($event['replyToken'], '画像を受け取ったよ');
                         $bot->replyMessage($event['replyToken'], $messageBuilder);
                     } else {
