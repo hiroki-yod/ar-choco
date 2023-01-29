@@ -4,7 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import UndoIcon from '@mui/icons-material/Undo';
+import UndoIcon from "@mui/icons-material/Undo";
 import { Link } from "@inertiajs/inertia-react";
 
 export default function Explain() {
@@ -12,7 +12,10 @@ export default function Explain() {
     return (
         <>
             <div className="ar-choco-brown-back h-16 flex">
-                <img src="/logo.png" className="h-4/5 my-auto ml-2"></img>
+                <Link href="/">
+                    <img src="/logo.png" className="h-4/5 my-auto ml-2"></img>
+                </Link>
+
                 <p className="ar-choco-pink my-auto ml-4">AR-LETTER</p>
                 <MenuIcon
                     fontSize="large"
@@ -50,7 +53,11 @@ export default function Explain() {
                         </Link>
                     </div>
                     <div className="mt-10 px-4 pb-2 border-b-2">
-                        <Link href="/" className="text-white" onClick={()=>setDrawerState(false)}>
+                        <Link
+                            href="/"
+                            className="text-white"
+                            onClick={() => setDrawerState(false)}
+                        >
                             <UndoIcon className="mr-4" />
                             Topへ戻る
                         </Link>
