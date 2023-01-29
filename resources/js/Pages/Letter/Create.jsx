@@ -57,10 +57,7 @@ const Create = ({ letter }) => {
                 >
                     ①メッセージを書いて写真に撮り、ボタンからアップロード
                 </Explain>
-                <Explain
-                    step={2}
-                    src="/images/explain/step2.png"
-                >
+                <Explain step={2} src="/images/explain/step2.png">
                     ②LINEであの人にURLを送る
                 </Explain>
                 <Explain
@@ -72,16 +69,10 @@ const Create = ({ letter }) => {
             </div>
             <p className="mt-2">手紙を1から作成する場合</p>
             <div class="flex-row mx-10 sm:flex sm:justify-between sm:mx-14">
-                <Explain
-                    step={1}
-                    src="/images/explain/step1.png"
-                >
+                <Explain step={1} src="/images/explain/step1.png">
                     ①カードのデザインを選び、送りたいメッセージを入力
                 </Explain>
-                <Explain
-                    step={2}
-                    src="/images/explain/step2.png"
-                >
+                <Explain step={2} src="/images/explain/step2.png">
                     ②LINEであの人にURLを送る
                 </Explain>
                 <Explain
@@ -97,7 +88,7 @@ const Create = ({ letter }) => {
     return (
         <>
             <Head>
-                <title>きゅーあーるせいせい</title>
+                <title>AR Letter</title>
             </Head>
 
             <div className="text-center">

@@ -13,13 +13,26 @@ export default function Explain() {
         <>
             <div className="ar-choco-brown-back h-16 flex">
                 <Link href="/">
-                    <img src="/logo.png" className="h-4/5 my-auto ml-2"></img>
+                    <img
+                        src="/logo.png"
+                        className="h-12 sm:h-16 my-auto ml-2 z-10 absolute top-2 sm:static"
+                    ></img>
                 </Link>
 
-                <p className="ar-choco-pink my-auto ml-4">AR-LETTER</p>
+                <Link href="/">
+                    <img
+                        src="/title-logo.png"
+                        className="h-12 sm:h-16 ml-2 absolute left-16 top-2 z-10 sm:static"
+                    ></img>
+                </Link>
+                <img
+                    src="/melt_chocolate.png"
+                    className="absolute h-24 ml-auto right-10 sm:right-24 z-0"
+                    // style={{ height: "100px", width: "290px" }}
+                ></img>
                 <MenuIcon
                     fontSize="large"
-                    className="ar-choco-green ml-auto mr-4 my-auto"
+                    className="ar-choco-green ml-auto mr-4 my-auto absolute right-4 top-4 z-10"
                     onClick={() => {
                         setDrawerState(true);
                     }}

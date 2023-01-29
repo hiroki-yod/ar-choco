@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.loading-choco {
+    position: absolute;
+    left: 37.5%;
+    top: 30%;
+}
+
 .select-image:hover {
     opacity: 0.6;
     filter: brightness(105%);

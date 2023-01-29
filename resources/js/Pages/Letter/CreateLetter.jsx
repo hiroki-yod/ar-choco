@@ -4,6 +4,7 @@ import styled from "styled-components";
 import SelectTemplate from "@/Components/SelectTemplate";
 import Layout from "@/Layouts/Layout";
 import ChocoButton from "@/Components/ChocoButton";
+import Loading from "@/Components/Loading";
 
 const TextStyle = styled.textarea`
     margin-top: 13%;
@@ -61,6 +62,7 @@ const CreateLetter = React.forwardRef((props, ref) => {
 
     return (
         <>
+            <Loading isLoading={processing} />
             {!selected ? (
                 <SelectTemplate
                     selectedTemplate={selectedTemplate}
