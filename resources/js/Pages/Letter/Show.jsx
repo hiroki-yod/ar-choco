@@ -9,7 +9,7 @@ import ChocoButton from "@/Components/ChocoButton";
 const Show = (props) => {
     const { letter } = props;
     const message =
-        "チョコが届きました！\n下記urlでカメラを起動してmeijiの板チョコかARマーカーにかざしてみてね!\n" +
+        "チョコが届きました！\n下記urlでカメラを起動してmeijiのアーモンドチョコかARマーカーにかざしてみてね!\n" +
         location.href;
     return (
         <div className="text-center flex flex-col justify-center">
