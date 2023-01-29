@@ -62,7 +62,7 @@
                     scale="0.7 0.7 0.7"
                     rotation="-90 0 0"
                     animation    = "property: rotation; to: -20 0 0; dur: 3000; delay: 6000"
-                    animation__2 = "property: position; to: 0 2 0; dur: 3000; delay: 6000"
+                    animation__2 = "property: position; to: 0 2 0; dur: 2700; delay: 6000"
                     animation__3 = "property: scale; to: 0.9 0.9 0.9; dur: 2000; delay: 6000"
                     animation__4 = "property: scale; from: 0.9 0.9 0.9; to: 1.5 1.5 1.5; dur: 999; delay: 8001"
                 ></a-image>
@@ -70,7 +70,14 @@
 
             <!-- 箱 -->
             <a-entity>
-                <a-obj-model id="box" position="0 0 0" scale="0.01 0.01 0.01" rotation="90 0 0" src="#box-obj" mtl="#box-mtl"></a-obj-model>
+                <a-obj-model
+                    id="box"
+                    position="0 0 0"
+                    scale="0.01 0.01 0.01"
+                    rotation="90 0 0"
+                    src="#box-obj"
+                    mtl="#box-mtl"
+                ></a-obj-model>
             </a-entity>
 
             <!-- ふた -->
@@ -92,13 +99,13 @@
 
         <!-- マーカーを登録（パッケージ） -->
         <a-nft
-        type="nft"
-        url="almond"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-        >
+          type="nft"
+          url="almond"
+          smooth="true"
+          smoothCount="10"
+          smoothTolerance=".01"
+          smoothThreshold="5"
+          >
 
             <!-- 手紙 -->
             <a-entity>
@@ -116,14 +123,21 @@
 
             <!-- 箱 -->
             <a-entity>
-                <a-obj-model id="box" position="70 0 -150" scale="1 1 1" rotation="90 0 0" src="#box-obj" mtl="#box-mtl"></a-obj-model>
+                <a-obj-model
+                    id="box"
+                    position="70 0 -150"
+                    scale="1.2 1.2 1.2"
+                    rotation="90 0 0"
+                    src="#box-obj"
+                    mtl="#box-mtl"
+                ></a-obj-model>
             </a-entity>
 
             <!-- ふた -->
             <a-obj-model
                 id="lid"
                 position="70 0 -150"
-                scale="1 1 1"
+                scale="1.2 1.2 1.2"
                 rotation="90 0 0"
                 src="#lid-obj"
                 mtl="#lid-mtl"
