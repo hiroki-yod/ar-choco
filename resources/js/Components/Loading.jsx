@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Loading(props) {
     const { isLoading } = props;
-    if (isLoading) {
+    if (!isLoading) {
         return null;
     }
     return (
