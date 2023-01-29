@@ -4,6 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import UndoIcon from '@mui/icons-material/Undo';
 import { Link } from "@inertiajs/inertia-react";
 
 export default function Explain() {
@@ -46,6 +47,12 @@ export default function Explain() {
                         <Link className="text-white">
                             <GitHubIcon className="mr-4" />
                             Github
+                        </Link>
+                    </div>
+                    <div className="mt-10 px-4 pb-2 border-b-2">
+                        <Link href="/" className="text-white" onClick={()=>setDrawerState(false)}>
+                            <UndoIcon className="mr-4" />
+                            Topへ戻る
                         </Link>
                     </div>
                 </div>
