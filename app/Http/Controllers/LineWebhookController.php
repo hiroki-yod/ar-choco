@@ -79,10 +79,12 @@ class LineWebhookController extends Controller
                             asset('pattern-ar.png')
                         ));
                         $messageBuilder->add(new ImageMessageBuilder(
-                            "https://chart.apis.google.com/chart?chs=500x500&cht=qr&chl=https://4971-2400-2411-13e1-8700-a550-ab18-cc19-b936.jp.ngrok.io/valentine/{$letter->id}",
-                            "https://chart.apis.google.com/chart?chs=240x240&cht=qr&chl=https://4971-2400-2411-13e1-8700-a550-ab18-cc19-b936.jp.ngrok.io/valentine/{$letter->id}"
+                            "https://chart.apis.google.com/chart?chs=500x500&cht=qr&chl=https://hiroki-yod.com/valentine/{$letter->id}",
+                            "https://chart.apis.google.com/chart?chs=240x240&cht=qr&chl=https://hiroki-yod.com/valentine/{$letter->id}"
                         ));
-                        $messageBuilder->add(new TextMessageBuilder('マーカーとQRコードを印刷してチョコレートに貼ってね！'.PHP_EOL.'明治のチョコレートでARを出現させたい場合はこのURLを相手に送ってね！'.PHP_EOL."https://6010-2400-2411-13e1-8700-a550-ab18-cc19-b936.jp.ngrok.io/valentine/{$letter->id}".PHP_EOL.'このURLを読み取るとカメラが起動するよ！'));
+
+                        $messageBuilder->add(new TextMessageBuilder('マーカーとQRコードを印刷してチョコレートに貼ってね！'.PHP_EOL.'明治のチョコレートでARを出現させたい場合はこのURLを相手に送ってね！'.PHP_EOL."https://hiroki-yod.com/valentine/{$letter->id}".PHP_EOL.'このURLを読み取るとカメラが起動するよ！'));
+
                         // $response = $bot->replyText($event['replyToken'], '画像を受け取ったよ');
                         $bot->replyMessage($event['replyToken'], $messageBuilder);
                     } else {
