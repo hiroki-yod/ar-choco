@@ -12,13 +12,11 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 const Create = ({ letter }) => {
     const { data, setData, post, errors, processing } = useForm({ letter: "" });
     const [isOpen, setIsOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
 
     const inputRef = React.useRef();
     const handleClick = () => inputRef.current.click();
 
     async function handleSendImage(e) {
-        setIsLoading(true);
         e.preventDefault();
         //入力された住所の緯度経度を取得
         Inertia.post(route("letters.store"), {
@@ -92,8 +90,6 @@ const Create = ({ letter }) => {
             <Head>
                 <title>AR Letter</title>
             </Head>
-
-            <Loading isLoading={processing} />
 
             <div className="text-center">
                 <div>
