@@ -14,12 +14,12 @@ const Show = (props) => {
     return (
         <div className="text-center flex flex-col justify-center">
             <Head>
-                <title>きゅーあーるせいせい</title>
+                <title>AR Letter</title>
             </Head>
-            <div className="my-8 mx-auto w-3/4 mt-20 mb-1">
+            <div className="my-8 mx-auto w-3/4 mt-20 mb-1 title-border-red py-6 sm:px-2 px-4">
                 <a
                     href={"http://line.me/R/msg/text/?" + message}
-                    className="text-4xl py-8 px-8 title-border-red "
+                    className="text-4xl py-8 px-8"
                 >
                     LINEであの人に送る
                     <img
@@ -47,13 +47,15 @@ const Show = (props) => {
                     <DownloadButton href={`/pattern-ar.png`} />
                 </Marker>
             </div>
-<div className="flex justify-center text-center">
-
-            <ChocoButton href="/" className="my-8 mx-auto w-3/4 mt-20 mb-20">
-                TOPページに戻る
-            </ChocoButton>
+            <div className="flex justify-center text-center">
+                <ChocoButton
+                    href="/"
+                    className="my-8 mx-auto w-3/4 mt-20 mb-20"
+                >
+                    TOPページに戻る
+                </ChocoButton>
+            </div>
         </div>
-</div>
     );
 };
 

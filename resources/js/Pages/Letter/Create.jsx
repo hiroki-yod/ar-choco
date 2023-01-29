@@ -115,7 +115,6 @@ const Create = ({ letter }) => {
                             ref={inputRef}
                             style={{ display: "none" }}
                             onChange={() => {
-                                console.log(inputRef);
                                 inputRef.current.form.submitButton.click();
                             }}
                         />

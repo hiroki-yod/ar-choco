@@ -60,10 +60,13 @@ export default function Explain() {
                         </Link>
                     </div>
                     <div className="mt-10 px-4 pb-2 border-b-2">
-                        <Link className="text-white">
+                        <a
+                            href="https://github.com/hiroki-yod/ar-choco"
+                            className="text-white"
+                        >
                             <GitHubIcon className="mr-4" />
                             Github
-                        </Link>
+                        </a>
                     </div>
                     <div className="mt-10 px-4 pb-2 border-b-2">
                         <Link
