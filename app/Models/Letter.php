@@ -33,7 +33,7 @@ class Letter extends Model
 
     public function createQRcode($image)
     {
-        QrCode::generate("https://ar-choco.herokuapp.com/valentine/".strval($image->id), '../public/QR/' . strval($image->id) . '.svg');
+        QrCode::generate("https://hiroki-yod.com/valentine/".strval($image->id), '../public/QR/' . strval($image->id) . '.svg');
     }
 
     public function getBodyArray($width, $input_body)
