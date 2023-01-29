@@ -5,6 +5,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.select-image:hover {
+    opacity: 0.6;
+    filter: brightness(105%);
+}
+
 .ar-choco-brown-back {
     background-color: #472525;
 }

@@ -28,6 +28,7 @@ const SelectTemplate = ({
                                     <img
                                         src={template}
                                         onClick={changeTemplate}
+                                        className="select-image"
                                     />
                                 </div>
                             </div>
