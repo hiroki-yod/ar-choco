@@ -1,5 +1,5 @@
 import Header from "@/Components/Header";
-import ToTop from "@/components/ToTop";
+import ToTop from "@/Components/ToTop";
 
 const Layout = ({ children }) => {
     return (
