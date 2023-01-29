@@ -28,6 +28,9 @@ class Letter extends Model
             "id" => str()->uuid(),
             "image_url" => $image_url
         ]);
+        if(is_file($request_image)){
+            unlink($request_image);
+        }
         return $image;
     }
 
@@ -88,6 +91,37 @@ class Letter extends Model
 
         // 本文を取得
         $body = $this->getBodyArray(15, $input_letter["body"]);
+        $x = 90;
+        // 画像と合成
+        for($i = 0; $i < count($body); $i++) {
+            $y = 180 + $i * 50;
+            $word = $body[$i];
+            $letter->text($word, $x, $y, function($font) use ($font_path, $color){
+                $font->file($font_path); // 日本語フォントファイル
+                $font->size(50); // 文字サイズ
+                $font->color($color); // 文字色
+            });
+        }
+        // 一時保存
+        $file_name = Uuid::uuid4()->toString();
+        $save_path = storage_path('app/public/images/'. $file_name . '.png');
+        $letter->save($save_path);
+        return $save_path;
+    }
+
+    public function createLetterForLine($text)
+    {
+        // テンプレートを取得
+        $template_path = public_path('images/letter_template/ribbon.png');
+        $letter = Image::make($template_path);
+        // フォント、色などを設定
+        $fonts = ['font/mogihaPen.ttf', 'font/beautiful_font.ttf', 'font/shokakisarari.ttf', 'font/acgyosyo.ttf'];
+        $font_path = public_path($fonts[array_rand($fonts, 1)]);
+        $colors = ['#000000', '#281a14', '#0d0015', '#16160e', '#333631', '#250d00'];
+        $color = $colors[array_rand($colors,1)];
+
+        // 本文を取得
+        $body = $this->getBodyArray(15, $text);
         $x = 90;
         // 画像と合成
         for($i = 0; $i < count($body); $i++) {
