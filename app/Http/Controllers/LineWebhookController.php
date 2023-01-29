@@ -30,7 +30,7 @@ class LineWebhookController extends Controller
         return;
     }
 
-    public function message(Request $request) {
+    public function message(Request $request, Letter $letter) {
         $data = $request->all();
         $events = $data['events'];
 
@@ -46,7 +46,25 @@ class LineWebhookController extends Controller
                     } elseif ($t === '文章でARを生成') {
                         $response = $bot->replyText($event['replyToken'], 'ARレターに載せたい文章を送信してください！'.PHP_EOL.'すると、ARを読み取るためのマーカーや、読み取ることでカメラが起動するQRコードが発行されます。');
                     } else {
-                        $response = $bot->replyText($event['replyToken'], 'まだ文章でARの生成はできないよ！！！ゴメンね！！！！');
+                        $lettere_instance = new Letter;
+                        $input_letter = $request->all();
+                        $create_letter = $lettere_instance->createLetterForLine($t);
+                        $letter = $lettere_instance->storeImage(($create_letter));
+                        $lettere_instance->createQRcode($letter);
+
+                        $messageBuilder = new MultiMessageBuilder();
+                        $messageBuilder->add(new ImageMessageBuilder(
+                            asset('pattern-ar.png'),
+                            asset('pattern-ar.png')
+                        ));
+                        $messageBuilder->add(new ImageMessageBuilder(
+                            "https://chart.apis.google.com/chart?chs=500x500&cht=qr&chl=https://hiroki-yod.com/valentine/{$letter->id}",
+                            "https://chart.apis.google.com/chart?chs=240x240&cht=qr&chl=https://hiroki-yod.com/valentine/{$letter->id}"
+                        ));
+                        $messageBuilder->add(new TextMessageBuilder('マーカーとQRコードを発行したよ！手作りのチョコを渡したい場合は↑の画像を印刷してチョコに貼ってね♪'.PHP_EOL.'lineギフトでアーモンドチョコを相手に贈りたい場合は、相手にギフトを送った後、以下のメッセージを転送してね！'));
+                        $messageBuilder->add(new TextMessageBuilder('プレゼント🎁'.PHP_EOL.'下のURLにアクセスしてカメラを起動してね！そのカメラで明治アーモンドチョコを見ると良いことがあるかも!?!?'.PHP_EOL."https://hiroki-yod.com/valentine/{$letter->id}"));
+                        // $response = $bot->replyText($event['replyToken'], '画像を受け取ったよ');
+                        $bot->replyMessage($event['replyToken'], $messageBuilder);
                     }
                     break;
 
@@ -82,9 +100,8 @@ class LineWebhookController extends Controller
                             "https://chart.apis.google.com/chart?chs=500x500&cht=qr&chl=https://hiroki-yod.com/valentine/{$letter->id}",
                             "https://chart.apis.google.com/chart?chs=240x240&cht=qr&chl=https://hiroki-yod.com/valentine/{$letter->id}"
                         ));
-
-                        $messageBuilder->add(new TextMessageBuilder('マーカーとQRコードを印刷してチョコレートに貼ってね！'.PHP_EOL.'明治のチョコレートでARを出現させたい場合はこのURLを相手に送ってね！'.PHP_EOL."https://hiroki-yod.com/valentine/{$letter->id}".PHP_EOL.'このURLを読み取るとカメラが起動するよ！'));
-
+                        $messageBuilder->add(new TextMessageBuilder('マーカーとQRコードを発行したよ！手作りのチョコを渡したい場合は↑の画像を印刷してチョコに貼ってね♪'.PHP_EOL.'lineギフトでアーモンドチョコを相手に贈りたい場合は、相手にギフトを送った後、以下のメッセージを転送してね！'));
+                        $messageBuilder->add(new TextMessageBuilder('プレゼント🎁'.PHP_EOL.'下のURLにアクセスしてカメラを起動してね！そのカメラで明治アーモンドチョコを見ると良いことがあるかも!?!?'.PHP_EOL."https://hiroki-yod.com/valentine/{$letter->id}"));
                         // $response = $bot->replyText($event['replyToken'], '画像を受け取ったよ');
                         $bot->replyMessage($event['replyToken'], $messageBuilder);
                     } else {
