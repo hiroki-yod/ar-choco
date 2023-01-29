@@ -59,7 +59,7 @@ const Create = ({ letter }) => {
                 </Explain>
                 <Explain
                     step={2}
-                    src="https://res.cloudinary.com/shoimages/image/upload/v1673771440/ar-choco/PXL_20230115_082740684_qbtouj.jpg"
+                    src="/images/explain/step2.png"
                 >
                     ②LINEであの人にURLを送る
                 </Explain>
@@ -74,13 +74,13 @@ const Create = ({ letter }) => {
             <div class="flex-row mx-10 sm:flex sm:justify-between sm:mx-14">
                 <Explain
                     step={1}
-                    src="https://res.cloudinary.com/shoimages/image/upload/v1673764879/ar-choco/sample-letter_wveolg.jpg"
+                    src="/images/explain/step1.png"
                 >
                     ①カードのデザインを選び、送りたいメッセージを入力
                 </Explain>
                 <Explain
                     step={2}
-                    src="https://res.cloudinary.com/shoimages/image/upload/v1673771440/ar-choco/PXL_20230115_082740684_qbtouj.jpg"
+                    src="/images/explain/step2.png"
                 >
                     ②LINEであの人にURLを送る
                 </Explain>
