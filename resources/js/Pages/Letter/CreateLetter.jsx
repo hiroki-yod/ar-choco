@@ -70,6 +70,7 @@ const CreateLetter = React.forwardRef((props, ref) => {
                 />
             ) : (
                 <div className="w-screen h-screen sm:justify-center my-16 sm:my-2 items-center flex flex-col">
+                    <p class="mb-6 text-3xl">メッセージカードの内容を入力</p>
                     <div
                         ref={ref}
                         className="w-7/12 h-5/12 bg-cover "
