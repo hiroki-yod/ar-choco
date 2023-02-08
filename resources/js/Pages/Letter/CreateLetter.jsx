@@ -42,8 +42,18 @@ const CreateLetter = React.forwardRef((props, ref) => {
 
     const selectTemplate = (e) => {
         e.preventDefault();
+        setSelectedTemplate(
+            e.target.src.substring(
+                e.target.src.indexOf("images/letter_template/")
+            )
+        );
         setSelected((prev) => !prev);
-        setData("template", selectedTemplate);
+        setData(
+            "template",
+            e.target.src.substring(
+                e.target.src.indexOf("images/letter_template/")
+            )
+        );
     };
 
     const templates = [
@@ -52,22 +62,13 @@ const CreateLetter = React.forwardRef((props, ref) => {
         "images/letter_template/red_stripe.png",
         "images/letter_template/ribbon.png",
     ];
-    const changeTemplate = (e) => {
-        setSelectedTemplate(
-            e.target.src.substring(
-                e.target.src.indexOf("images/letter_template/")
-            )
-        );
-    };
 
     return (
         <>
             <Loading isLoading={processing} />
             {!selected ? (
                 <SelectTemplate
-                    selectedTemplate={selectedTemplate}
                     templates={templates}
-                    changeTemplate={changeTemplate}
                     selectTemplate={selectTemplate}
                 />
             ) : (
@@ -99,7 +100,12 @@ const CreateLetter = React.forwardRef((props, ref) => {
                         )}
                     </div>
                     <div className="flex justify-end pr-2">
-                        <ChocoButton onClick={selectTemplate} type="back">
+                        <ChocoButton
+                            onClick={() => {
+                                setSelected(!selected);
+                            }}
+                            type="back"
+                        >
                             別のカードを選ぶ
                         </ChocoButton>
                         <ChocoButton onClick={onSubmit} disabled={processing}>

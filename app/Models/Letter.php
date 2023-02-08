@@ -36,7 +36,7 @@ class Letter extends Model
 
     public function createQRcode($image)
     {
-        QrCode::generate("https://hiroki-yod.com/valentine/".strval($image->id), '../public/QR/' . strval($image->id) . '.svg');
+        QrCode::generate("https://afa7-125-102-201-146.jp.ngrok.io/valentine/".strval($image->id), '../public/QR/' . strval($image->id) . '.svg');
     }
 
     public function getBodyArray($width, $input_body)
@@ -88,6 +88,9 @@ class Letter extends Model
         $font_path = public_path($fonts[array_rand($fonts, 1)]);
         $colors = ['#000000', '#281a14', '#0d0015', '#16160e', '#333631', '#250d00'];
         $color = $colors[array_rand($colors,1)];
+        if($template_path=='images/letter_template/chocolate.png'){
+            $color = '#ffffff';
+        }
 
         // 本文を取得
         $body = $this->getBodyArray(15, $input_letter["body"]);
