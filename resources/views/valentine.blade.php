@@ -74,7 +74,7 @@
                     id="box"
                     position="0 0 0"
                     scale="0.01 0.01 0.01"
-                    rotation="90 0 0"
+                    rotation="-90 0 0"
                     src="#box-obj"
                     mtl="#box-mtl"
                 ></a-obj-model>
